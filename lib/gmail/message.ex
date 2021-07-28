@@ -134,8 +134,9 @@ defmodule Gmail.Message do
     |> case do
       {:error, message} ->
         {:error, message}
-      {:ok, %{"messages" => msgs}} ->
-        {:ok, Enum.map(msgs, fn(%{"id" => id, "threadId" => thread_id}) -> %Message{id: id, thread_id: thread_id} end)}
+      {:ok, response = %{"messages" => msgs}} ->
+        decoded_messages = Enum.map(msgs, fn(%{"id" => id, "threadId" => thread_id}) -> %Message{id: id, thread_id: thread_id} end)
+        {:ok, response}
       {:ok, %{"resultSizeEstimate" => 0}} ->
         {:ok, []}
     end
