@@ -8,7 +8,7 @@ defmodule Gmail.Mixfile do
      start_permanent: Mix.env == :prod,
      deps: deps(),
      test_coverage: [tool: ExCoveralls],
-     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test],
+     preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test],
      description: "A simple Gmail REST API client for Elixir",
      package: package()]
   end
